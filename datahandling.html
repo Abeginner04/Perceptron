@@ -1,0 +1,79 @@
+<!-- Data Handling for Perceptron -->
+<div id="data-handling" class="section">
+    <h2 style="text-align: center; color: #004aad; margin-top: 50px;">📊 Data Handling in Perceptrons</h2>
+
+    <p>Efficient data handling is essential for training a perceptron model effectively. Below are the key steps involved in preparing and processing data before it is used in a perceptron-based system.</p>
+
+    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">🔍 1. Data Collection</h3>
+    <p>Collect a labeled dataset suitable for a binary classification task. Common datasets include:</p>
+    <ul>
+        <li>MNIST for handwritten digit recognition</li>
+        <li>Spam email datasets</li>
+        <li>Iris dataset (binary version)</li>
+    </ul>
+
+    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">🧼 2. Data Preprocessing</h3>
+    <p>Raw data needs to be cleaned and formatted before being fed into a perceptron. Preprocessing may involve:</p>
+    <ul>
+        <li>Handling missing values</li>
+        <li>Removing duplicates</li>
+        <li>Filtering outliers</li>
+        <li>Converting text labels into numeric values</li>
+    </ul>
+
+    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">📐 3. Feature Scaling / Normalization</h3>
+    <p>Perceptrons perform better when input features are scaled. Techniques include:</p>
+    <ul>
+        <li><strong>Min-Max Normalization:</strong> Scales features to a fixed range (usually 0 to 1)</li>
+        <li><strong>Z-score Normalization:</strong> Transforms data based on mean and standard deviation</li>
+    </ul>
+    <pre>
+    x_normalized = (x - min) / (max - min)
+    or
+    x_standardized = (x - μ) / σ
+    </pre>
+
+    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">📊 4. Data Splitting</h3>
+    <p>Split the dataset into subsets to train and evaluate the model:</p>
+    <ul>
+        <li><strong>Training Set:</strong> Used to train the perceptron (usually 70–80%)</li>
+        <li><strong>Validation Set (optional):</strong> Used to tune hyperparameters</li>
+        <li><strong>Testing Set:</strong> Used to evaluate the performance (usually 20–30%)</li>
+    </ul>
+
+    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">🔢 5. Encoding Categorical Variables</h3>
+    <p>Convert categorical values (like "Yes"/"No", "Spam"/"Not Spam") into numerical form:</p>
+    <ul>
+        <li><strong>Label Encoding:</strong> Assigns a unique number to each class (0, 1, 2, ...)</li>
+        <li><strong>One-Hot Encoding:</strong> Creates binary columns for each category</li>
+    </ul>
+
+    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">🧮 6. Feeding Data to Perceptron</h3>
+    <p>After preprocessing, each training instance is a vector of input features <code>X = [x1, x2, ..., xn]</code> passed to the perceptron:</p>
+    <pre>
+    z = w1*x1 + w2*x2 + ... + wn*xn + b
+    y = activation(z)
+    </pre>
+
+    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">📥 Example Input for Perceptron</h3>
+    <p>Here’s a sample representation of a clean dataset for binary classification:</p>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Feature 1</th>
+            <th>Feature 2</th>
+            <th>Feature 3</th>
+            <th>Label (Target)</th>
+        </tr>
+        <tr><td>0.12</td><td>0.85</td><td>0.33</td><td>1</td></tr>
+        <tr><td>0.45</td><td>0.65</td><td>0.78</td><td>0</td></tr>
+        <tr><td>0.22</td><td>0.90</td><td>0.12</td><td>1</td></tr>
+    </table>
+
+    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">📌 Final Tips</h3>
+    <ul>
+        <li>Ensure all features are numeric and scaled</li>
+        <li>Always shuffle data before splitting</li>
+        <li>Use consistent preprocessing for both training and testing sets</li>
+        <li>Visualize data distributions for better understanding</li>
+    </ul>
+</div>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Perceptron Algorithm Explained</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 30px;
+            background-color: #f4f9ff;
+            color: #222;
+        }
+
+        h1 {
+            color: #004aad;
+            text-align: center;
+        }
+
+        h2, h3 {
+            color: #004aad;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        pre {
+            background-color: #e8f0fe;
+            border-left: 5px solid #004aad;
+            padding: 15px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .section {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .note {
+            background-color: #fff8e1;
+            border-left: 5px solid #fbc02d;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .output-box {
+            background-color: #e0f7fa;
+            padding: 15px;
+            border-left: 5px solid #00796b;
+        }
+
+        code {
+            color: #d63384;
+            background-color: #f3f3f3;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="section">
+        <h1>🧠 Perceptron Algorithm in Python</h1>
+
+        <h2>📌 What is a Perceptron?</h2>
+        <p>The perceptron is a type of artificial neuron that forms the foundation of neural networks. It’s used for binary classification tasks (e.g., YES or NO, SPAM or NOT SPAM).</p>
+
+        <h2>🛠️ Perceptron Architecture</h2>
+        <ul>
+            <li><strong>Inputs (x):</strong> Feature vector</li>
+            <li><strong>Weights (w):</strong> Determines importance of each input</li>
+            <li><strong>Bias (b):</strong> Shifts the decision boundary</li>
+            <li><strong>Activation Function:</strong> Typically a step function</li>
+            <li><strong>Output:</strong> Binary (0 or 1)</li>
+        </ul>
+
+        <h2>💻 Python Implementation</h2>
+        <p>Below is a simple implementation of a perceptron to learn the AND logic gate.</p>
+
+        <pre><code># Perceptron for AND Gate
+import numpy as np
+
+# Step activation function
+def step_function(x):
+    return 1 if x >= 0 else 0
+
+# Perceptron class
+class Perceptron:
+    def __init__(self, learning_rate=0.1, epochs=10):
+        self.lr = learning_rate
+        self.epochs = epochs
+        self.weights = None
+        self.bias = None
+
+    def train(self, X, y):
+        n_samples, n_features = X.shape
+        self.weights = np.zeros(n_features)
+        self.bias = 0
+
+        for _ in range(self.epochs):
+            for idx, x_i in enumerate(X):
+                linear_output = np.dot(x_i, self.weights) + self.bias
+                y_pred = step_function(linear_output)
+
+                # Update rule
+                update = self.lr * (y[idx] - y_pred)
+                self.weights += update * x_i
+                self.bias += update
+
+    def predict(self, X):
+        linear_output = np.dot(X, self.weights) + self.bias
+        return [step_function(x) for x in linear_output]
+
+
+# Input data for AND gate
+X = np.array([[0, 0],
+              [0, 1],
+              [1, 0],
+              [1, 1]])
+
+# Expected output
+y = np.array([0, 0, 0, 1])
+
+# Create and train model
+model = Perceptron()
+model.train(X, y)
+
+# Predict
+predictions = model.predict(X)
+
+print("Predictions:", predictions)</code></pre>
+
+        <h2>🔍 Output Explanation</h2>
+        <div class="output-box">
+            <p>If successful, the program will output:</p>
+            <code>Predictions: [0, 0, 0, 1]</code>
+            <p>This means the perceptron has learned the AND logic gate correctly!</p>
+        </div>
+
+        <h2>⚠️ Limitations of Single-Layer Perceptron</h2>
+        <ul>
+            <li>Can only solve linearly separable problems</li>
+            <li>Cannot solve XOR problem</li>
+            <li>Struggles with complex datasets (e.g. image or speech recognition)</li>
+        </ul>
+
+        <h2>📈 What's Next?</h2>
+        <p>To solve complex and non-linear problems:</p>
+        <ul>
+            <li>Use Multi-Layer Perceptron (MLP)</li>
+            <li>Apply non-linear activation functions (ReLU, Sigmoid)</li>
+            <li>Train using Backpropagation + Gradient Descent</li>
+        </ul>
+
+        <div class="note">
+            ✨ <strong>Tip:</strong> Try changing the logic gate from AND to OR or XOR and observe how the perceptron behaves!
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perceptron Code Description</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 30px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #007BFF;
+            font-size: 1.8em;
+            margin-top: 30px;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 5px solid #007BFF;
+            border-radius: 5px;
+        }
+        .code {
+            font-family: monospace;
+            background-color: #eee;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 1.1em;
+        }
+        p {
+            margin: 10px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Perceptron Code Description</h1>
+        <p>This document offers an extensive, point-wise breakdown of a perceptron implementation in Python. The perceptron, a foundational concept in neural networks, is a binary classifier that learns to separate linearly separable data. Below, we describe each component of the code in detail, assuming a basic implementation using NumPy for efficient matrix operations. This description is designed to be comprehensive, covering the class structure, initialization, activation function, prediction, training process, and a practical usage example.</p>
+
+        <h2>1. Class Definition</h2>
+        <ul>
+            <li><strong>Define the Perceptron Class:</strong> The code begins by creating a class called <span class="code">Perceptron</span>. In Python, classes are used to encapsulate related data and functions (methods) into a single unit. This class will serve as a blueprint for creating perceptron objects that can be trained and used for classification tasks. The perceptron is a simple model, but wrapping it in a class makes it reusable and organized.</li>
+            <li><strong>Purpose of the Class:</strong> The <span class="code">Perceptron</span> class will include all the necessary methods to initialize the model, train it on data, and make predictions. By structuring the code this way, we ensure that the perceptron’s logic is modular, allowing us to easily modify or extend it later—for example, by adding different activation functions or learning rules.</li>
+        </ul>
+
+        <h2>2. Initialization (<span class="code">__init__</span>)</h2>
+        <ul>
+            <li><strong>Accept Parameters:</strong> The <span class="code">__init__</span> method is the constructor for the <span class="code">Perceptron</span> class. It accepts two optional parameters: <span class="code">learning_rate</span> (default value 0.01) and <span class="code">n_epochs</span> (default value 100). These parameters control how the perceptron learns from data. The learning rate determines the step size of weight updates, while the number of epochs sets how many times the algorithm iterates over the training data.</li>
+            <li><strong>Store Learning Rate:</strong> The <span class="code">learning_rate</span> is saved as an instance variable (<span class="code">self.learning_rate</span>). This value, typically a small positive number (e.g., 0.01 or 0.1), ensures that weight adjustments are gradual, preventing the model from overshooting the optimal solution. A well-chosen learning rate balances speed and accuracy in training.</li>
+            <li><strong>Store Number of Epochs:</strong> The <span class="code">n_epochs</span> parameter is stored as <span class="code">self.n_epochs</span>. An epoch represents one full pass through the training dataset. Setting this to 100 means the perceptron will attempt to refine its weights 100 times, though it may converge earlier if the data is linearly separable.</li>
+            <li><strong>Initialize Weights and Bias:</strong> The weights (<span class="code">self.weights</span>) and bias (<span class="code">self.bias</span>) are initially set to <span class="code">None</span>. These will be properly initialized later in the <span class="code">fit</span> method based on the size of the input data. Delaying initialization allows the perceptron to adapt to datasets with varying numbers of features.</li>
+        </ul>
+
+        <h2>3. Activation Function</h2>
+        <ul>
+            <li><strong>Define the Method:</strong> A method named <span class="code">activate</span> is created to implement the perceptron’s activation function. In this case, we use a step function, which is the classic choice for a basic perceptron, reflecting its binary classification nature.</li>
+            <li><strong>Parameter Input:</strong> The <span class="code">activate</span> method takes a single parameter, <span class="code">z</span>, which represents the weighted sum of inputs plus the bias. This value is the result of the perceptron’s linear combination before the decision rule is applied.</li>
+            <li><strong>Step Function Logic:</strong> The function returns 1 if <span class="code">z >= 0</span> and 0 otherwise. This threshold-based approach mimics a neuron firing (1) or not firing (0). For example, if <span class="code">z = 2.5</span>, it returns 1; if <span class="code">z = -1.2</span>, it returns 0. This simplicity is key to the perceptron’s original design by Frank Rosenblatt.</li>
+        </ul>
+
+        <h2>4. Prediction (<span class="code">predict</span>)</h2>
+        <ul>
+            <li><strong>Method Creation:</strong> The <span class="code">predict</span> method is defined to classify input data after the perceptron has been trained. This is the core function for making predictions once the weights and bias are learned.</li>
+            <li><strong>Input Parameter:</strong> It accepts <span class="code">X</span>, a 2D NumPy array where each row represents a sample and each column represents a feature. For instance, if we’re modeling an AND gate with two inputs, <span class="code">X</span> might look like <span class="code">[[0, 0], [0, 1], [1, 0], [1, 1]]</span>.</li>
+            <li><strong>Weighted Sum Calculation:</strong> The method computes <span class="code">z = X.dot(self.weights) + self.bias</span>. Here, <span class="code">X.dot(self.weights)</span> performs a matrix-vector multiplication (dot product) between the input matrix and the weight vector, and then the bias is added to shift the result. This leverages NumPy’s efficiency for handling multiple samples at once.</li>
+            <li><strong>Apply Activation:</strong> The <span class="code">activate</span> function is applied to <span class="code">z</span>. Since <span class="code">z</span> is an array (one value per sample), the activation is vectorized, meaning it’s applied element-wise to produce an array of binary outputs (0s and 1s).</li>
+            <li><strong>Return Predictions:</strong> The method returns the array of predicted outputs. For example, for the AND gate, it might return <span class="code">[0, 0, 0, 1]</span>, matching the expected truth table.</li>
+        </ul>
+
+        <h2>5. Training (<span class="code">fit</span>)</h2>
+        <ul>
+            <li><strong>Method Definition:</strong> The <span class="code">fit</span> method is implemented to train the perceptron by adjusting its weights and bias based on the training data. This is where the perceptron learns to classify correctly.</li>
+            <li><strong>Input Parameters:</strong> It takes two parameters: <span class="code">X</span> (input features, a 2D array) and <span class="code">y</span> (target labels, a 1D array). For example, <span class="code">X</span> could be the AND gate inputs, and <span class="code">y</span> could be <span class="code">[0, 0, 0, 1]</span>.</li>
+            <li><strong>Determine Feature Size:</strong> The number of features is extracted using <span class="code">X.shape[1]</span>. If <span class="code">X</span> has 4 rows and 2 columns (2 features per sample), <span class="code">X.shape[1] = 2</span>. This determines the size of the weight vector.</li>
+            <li><strong>Initialize Weights:</strong> <span class="code">self.weights</span> is set to a NumPy array of zeros with length equal to the number of features, e.g., <span class="code">np.zeros(2)</span> for 2 features. Starting with zeros is common, though random small values could also be used.</li>
+            <li><strong>Initialize Bias:</strong> <span class="code">self.bias</span> is set to 0. The bias acts as a threshold adjuster and will be updated during training to shift the decision boundary as needed.</li>
+            <li><strong>Epoch Loop:</strong> A <span class="code">for</span> loop runs for <span class="code">self.n_epochs</span> iterations (e.g., 100 times). Each iteration processes the entire dataset, allowing the perceptron to refine its parameters incrementally.</li>
+            <li><strong>Compute Predictions:</strong> Inside the loop, <span class="code">predictions = self.predict(X)</span> is called to get the current outputs based on the existing weights and bias. This generates an array of 0s and 1s for all samples.</li>
+            <li><strong>Calculate Error:</strong> The error is computed as <span class="code">error = y - predictions</span>. For each sample, this yields 0 if the prediction is correct, 1 if the true label is 1 but predicted 0, or -1 if the true label is 0 but predicted 1.</li>
+            <li><strong>Update Weights:</strong> The weights are updated using the rule <span class="code">self.weights += self.learning_rate * X.T.dot(error)</span>. Here, <span class="code">X.T</span> is the transpose of <span class="code">X</span>, and <span class="code">X.T.dot(error)</span> computes the contribution of each feature to the error across all samples. Multiplying by the learning rate scales the update, and adding it to the weights adjusts them toward better classification.</li>
+            <li><strong>Update Bias:</strong> The bias is updated with <span class="code">self.bias += self.learning_rate * error.sum()</span>. Summing the error gives the net direction of adjustment needed, and scaling by the learning rate ensures a controlled shift.</li>
+            <li><strong>Training Continuation:</strong> The loop continues until all epochs are completed. Optionally, early stopping could be added if the error becomes zero (perfect classification), but this basic version runs all epochs to ensure thorough learning, especially for noisy or challenging data.</li>
+        </ul>
+
+        <h2>6. Usage Example</h2>
+        <ul>
+            <li><strong>Import Library:</strong> The code starts with <span class="code">import numpy as np</span> to enable efficient array operations. NumPy is essential for handling the matrix multiplications and vectorized computations in the perceptron.</li>
+            <li><strong>Create Sample Data:</strong> A dataset is defined as <span class="code">X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])</span>. This represents the input combinations for a logical AND gate, with each row being a pair of binary inputs (x₁, x₂).</li>
+            <li><strong>Define Labels:</strong> The target outputs are set as <span class="code">y = np.array([0, 0, 0, 1])</span>. These correspond to the AND gate truth table, where the output is 1 only when both inputs are 1, and 0 otherwise.</li>
+            <li><strong>Instantiate Perceptron:</strong> A perceptron object is created with <span class="code">p = Perceptron(learning_rate=0.1, n_epochs=10)</span>. Here, a learning rate of 0.1 allows for relatively quick adjustments, and 10 epochs provide enough iterations for this simple problem to converge.</li>
+            <li><strong>Train the Model:</strong> The perceptron is trained by calling <span class="code">p.fit(X, y)</span>. This runs the training loop, adjusting <span class="code">p.weights</span> and <span class="code">p.bias</span> to correctly classify the AND gate inputs based on the provided labels.</li>
+            <li><strong>Make Predictions:</strong> After training, predictions are generated with <span class="code">predictions = p.predict(X)</span>. This uses the learned weights and bias to classify the same input data, testing whether the perceptron has learned the AND function.</li>
+            <li><strong>Print Results:</strong> Finally, <span class="code">print(predictions)</span> displays the output, expected to be <span class="code">[0, 0, 0, 1]</span> if training was successful. This step verifies that the perceptron correctly models the AND gate, demonstrating its ability to learn a linearly separable pattern.</li>
+        </ul>
+    </div>
+</body>
+</html> -->

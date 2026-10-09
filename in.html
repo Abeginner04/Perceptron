@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEURAL INSIGHT</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-brain"></i> Neural Insight</h1>
+        
+        <p ><b>Understanding the Building Blocks of Neural Networks  </b></p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showSection('home')" class="nav-link">Home</a></li>
+            <li><a href="#" onclick="showSection('introduction')" class="nav-link">Introduction</a></li>
+            <li><a href="#" onclick="showSection('challenges')" class="nav-link">Challenges</a></li>
+            <li><a href="#" onclick="showSection('Simulator')" class="nav-link">Simulator</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div id="home" class="section active">
+            <h2>Welcome to Perceptron Learning</h2>
+            <p>Welcome to our interactive learning platform dedicated to understanding perceptrons - the fundamental units of neural networks.</p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-book"></i>
+                    <a href="learn.html" class="none"><h3>Learn</h3></a>
+                    <p>Explore perceptron concepts</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <a href="visualize.html" class="none"><h3>Visualize</h3></a>
+                    <p>See perceptrons in Visualization</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-database"></i>
+                    <a href="datahandling.html" class="none"><h3>Data Handling</h3></a>
+                    <p>Explore perceptron while handling data</p>
+                </div>
+                     <div class="feature-card">
+                       <i class="fas fa-code"></i>
+                       <a href="code.html" class="none"><h3>Code</h3></a>
+                       <p>See perceptrons in action</p>
+                     </div>
+                </div>
+        
+
+                <!-- ===== Perceptron Introduction ===== -->
+                <h3 style="text-align:center; color:#004aad; margin-top: 40px;">🤖 What is a Perceptron?</h3>
+                <br>
+                <p style="text-align:center;">
+                    A <strong>perceptron</strong> is the simplest form of an artificial neural network — like a baby brain for computers! 🧠
+                </p>
+                <p style="text-align:center;">
+                    It acts as a <strong>binary classifier</strong>, meaning it decides between two outcomes (YES/NO or 0/1). Here's how it works:
+                </p>
+                <br>
+                <ul style="max-width: 800px; margin: 0 auto; padding-left: 20px; font-size:16px; line-height: 1.8;">
+                    <li>🔢 Takes multiple input values</li>
+                    <li>⚖️ Multiplies each input by a weight</li>
+                    <li>➕ Adds them all up (plus a bias)</li>
+                    <li>🚦 Passes the sum through an <strong>activation function</strong></li>
+                    <li>✅ Outputs either a 0 or 1 based on result</li>
+                </ul>
+                <br>
+                <p style="text-align:center;">
+                    While a <strong>single-layer perceptron</strong> handles basic tasks, modern networks use <strong>multi-layer perceptrons (MLPs)</strong> to handle complex data via:
+                </p>
+                <br>
+                <ul style="max-width: 800px; margin: 0 auto; padding-left: 20px; font-size:16px; line-height: 1.8;">
+                    <li>✨ Hidden layers</li>
+                    <li>📈 Backpropagation</li>
+                    <li>🔁 Activation functions like ReLU, Sigmoid, or Tanh</li>
+                </ul>
+                <br>
+
+                <!-- ===== History of Perceptrons ===== -->
+                <h3 style="text-align:center; color:#004aad; margin-top: 40px;">📜 A Brief History of Perceptrons</h3>
+                <br>
+                <ul style="max-width: 800px; margin: 0 auto; padding-left: 20px; font-size:16px; line-height: 1.8;">
+                    <li><strong>🧠 1958:</strong> Frank Rosenblatt introduces the first perceptron model — inspired by real neurons!</li>
+                    <li><strong>🚀 1960s:</strong> Gained attention in AI research.</li>
+                    <li><strong>🛑 1970s:</strong> Found to be limited (e.g. XOR problem).</li>
+                    <li><strong>💡 1980s–90s:</strong> MLPs and backpropagation revived interest.</li>
+                    <li><strong>🤖 2010s:</strong> Deep learning exploded with CNNs and RNNs.</li>
+                    <li><strong>🌐 2020s:</strong> Perceptrons power chatbots, cars, robots.</li>
+                    <li><strong>🔮 2025:</strong> Integrated across medicine, art, and more.</li>
+                </ul>
+                <br>
+
+                <!-- MathJax Script (place at bottom of body or once per page) -->
+                <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+                <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+                <!-- ===== Perceptron Workflow ===== -->
+                <h3 style="text-align:center; color:#004aad; margin-top: 40px;">🧠 How Does a Perceptron Work? (Step-by-Step)</h3>
+                <br>
+
+                <h4>🔹 Step 1: Inputs and Weights</h4>
+                <p>Example Inputs: \( x_1 = 2, \quad x_2 = 3 \)<br> Weights: \( w_1 = 0.5, \quad w_2 = -0.4 \)</p>
+
+                <h4>🔹 Step 2: Add Bias and Compute Weighted Sum</h4>
+                <p>
+                \[
+                z = w_1x_1 + w_2x_2 + b = (0.5 \cdot 2) + (-0.4 \cdot 3) + 0.2 = 0.0
+                \]
+                </p>
+
+                <h4>🔹 Step 3: Apply Activation Function</h4>
+                <p>
+                \[
+                f(z) =
+                \begin{cases}
+                1 & \text{if } z \geq 0 \\
+                0 & \text{if } z < 0
+                \end{cases}
+                \Rightarrow f(0) = 1
+                \]
+                </p>
+
+                <h4>🔹 Step 4: Learning Rule</h4>
+                <p>
+                \[
+                w_{\text{new}} = w_{\text{old}} + \eta (y - \hat{y}) x
+                \]
+                </p>
+                <p>Example: If \( \hat{y} = 0 \), \( y = 1 \), \( \eta = 0.1 \), \( x = 2 \), \( w = 0.5 \):</p>
+                <p>
+                \[
+                w_{\text{new}} = 0.5 + 0.1(1 - 0)(2) = 0.7
+                \]
+                </p>
+
+                <h4>🔹 Step 5: Use Modern Activation</h4>
+                <p><strong>Sigmoid:</strong> \[ f(z) = \frac{1}{1 + e^{-z}} \quad \text{(e.g., } f(0) = 0.5 \text{)} \]</p>
+                <p><strong>Tanh:</strong> \[ f(z) = \tanh(z) \quad \text{(e.g., } \tanh(-1.55) \approx -0.91 \text{)} \]</p>
+
+                <h4>📌 Summary Formula</h4>
+                <p>
+                \[
+                y = f(w_1x_1 + w_2x_2 + \dots + w_nx_n + b)
+                \]
+                </p>
+                <br>
+
+                <div class="image-container" style="text-align:center;">
+                    <img src="mathperceptron.png" alt="Perceptron Structure" width="500">
+                    <p><strong>Perceptron Model:</strong> Inputs are weighted, summed, passed through an activation function, and output a decision.</p>
+                </div>
+                <br>
+
+                <!-- ===== Perceptron Challenges ===== -->
+                <h3 style="text-align:center; color:#004aad; margin-top: 40px;">🚧 Challenges of Perceptrons</h3>
+                <br>
+                <p style="text-align:center; font-size:16px;">
+                    While perceptrons are powerful in their simplicity, they face several key limitations:
+                </p>
+                <br>
+                <div class="image-container" style="text-align:center;">
+                    <img src="perceptron.png" alt="Perceptron Challenges" width="600">
+                    <p><strong>Visualizing Limitations:</strong> Single-layer perceptrons can only separate linearly separable data.</p>
+                </div>
+                <br>
+                <ul style="max-width: 800px; margin: 0 auto; padding-left: 20px; font-size:16px; line-height: 1.8;">
+                    <li>❌ <strong>Can't solve non-linear problems</strong> (e.g., XOR problem).</li>
+                    <li>🔁 <strong>Only binary classification</strong> — not ideal for multi-class tasks.</li>
+                    <li>📊 <strong>Needs large training data</strong> to learn effectively.</li>
+                    <li>⚠️ <strong>Overfitting/underfitting</strong> risks on small/large datasets.</li>
+                    <li>🖼️ <strong>Poor feature extraction</strong> for images or speech.</li>
+                    <li>🧠 <strong>Single-layer limitations</strong> prevent learning complex patterns.</li>
+                    <li>📉 <strong>Linear boundaries only</strong> — can't model curves.</li>
+                </ul>
+                <br>
+
+                <!-- ===== Advanced Concepts Accordion ===== -->
+                <h3 style="text-align: center; color: #004aad; margin-top: 40px;">🔬 Advanced Perceptron Concepts</h3>
+                <br>
+                <p style="text-align:center; font-size:16px; color:#444;">
+                    Perceptrons are now core to deep learning. Explore the key advancements below:
+                </p>
+                <br>
+                <div class="accordion-container" style="max-width: 800px; margin: 0 auto;">
+                    <div class="accordion-item">
+                        <button class="accordion-btn">🔁 Backpropagation</button>
+                        <div class="accordion-content">
+                            <p>Used in MLPs to adjust weights by propagating errors backwards. It enables learning from mistakes.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-btn">🧠 Deep Learning</button>
+                        <div class="accordion-content">
+                            <p>Perceptrons are the building blocks of advanced architectures like CNNs and RNNs for vision, language, and more.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-btn">🛡️ Regularization</button>
+                        <div class="accordion-content">
+                            <p>Dropout, L2 regularization and others prevent overfitting by improving generalization during training.</p>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <button class="accordion-btn">⚡ Activation Functions</button>
+                        <div class="accordion-content">
+                            <p>Modern functions like <strong>ReLU, Sigmoid, Tanh, Softmax</strong> provide non-linearity and better learning capacity.</p>
+                        </div>
+                    </div>
+                   
+                    
+                    
+                    <div class="accordion-item">
+                    
+                        <button class="accordion-btn">📊 Optimization Algorithms</button>
+                        <div class="accordion-content">
+                            <p>Advanced optimizers like Adam, RMSprop, and AdaGrad improve convergence speed and accuracy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        
+                <br>
+                <!-- Improved Introduction Section -->
+                <div id="introduction" class="section">
+                    <h2>Introduction to Perceptrons</h2>
+                    <p>The perceptron, introduced by Frank Rosenblatt in 1958, is one of the earliest artificial neural networks designed for <strong>binary classification</strong> tasks.</p>
+
+                    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">🧠 Types of Perceptrons</h3>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <img src="single.png" alt="Single Layer Perceptron" width="400" height="300">
+                            <h3 style="text-align: center; color: #004aad; margin-top: 40px;">🔹 Single-Layer Perceptron</h3>
+                            <p>A basic perceptron with one layer. Can only solve linearly separable problems.</p>
+
+                            <p><strong>1. Input Layer:</strong> A single-layer perceptron consists of an input layer where each input is assigned a weight. A bias term is also included to shift the decision boundary.</p>
+                            <p><strong>2. Weighted Summation:</strong> The perceptron computes a weighted sum of all inputs, including the bias. This is mathematically represented as <strong>Σ(wᵢxᵢ) + b</strong>.</p>
+                            <p><strong>3. Activation Function:</strong> The weighted sum is passed through an activation function, typically a step function, which determines whether the perceptron fires (outputs 1) or not (outputs 0).</p>
+                            <p><strong>4. Learning Rule:</strong> The perceptron learns using the perceptron learning rule, which updates weights based on the error between predicted and actual output.</p>
+                            <p><strong>5. Binary Classification:</strong> A single-layer perceptron is mainly used for linearly separable binary classification problems, as it can only learn linear decision boundaries.</p>
+                            <p><strong>6. Limitation:</strong> It cannot solve non-linearly separable problems like XOR, which led to the development of multi-layer perceptrons with hidden layers.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <img src="multi.png" alt="Multi-Layer Perceptron" width="460" height="300">
+                            <h3 style="text-align: center; color: #004aad; margin-top: 40px;">🔸 Multi-Layer Perceptron (MLP)</h3>
+                            <p>Uses multiple hidden layers and non-linear activation functions to solve complex problems.</p>
+
+                            <p><strong>1. Definition:</strong> A Multiple Layer Perceptron (MLP) is a type of artificial neural network consisting of multiple layers of neurons, including input, hidden, and output layers.</p>
+                            <p><strong>2. Layers:</strong> MLP has at least one hidden layer between the input and output layers, allowing it to capture complex patterns in data.</p>
+                            <p><strong>3. Activation Function:</strong> Each neuron in the hidden and output layers applies an activation function (like ReLU, Sigmoid, or Tanh) to introduce non-linearity and enhance learning capabilities.</p>
+                            <p><strong>4. Weights and Bias:</strong> Each connection between neurons has an associated weight and bias, which are updated during training using optimization algorithms like Gradient Descent.</p>
+                            <p><strong>5. Backpropagation:</strong> MLP is trained using the backpropagation algorithm, which adjusts the weights based on the error calculated from the difference between predicted and actual outputs.</p>
+                            <p><strong>6. Applications:</strong> MLP is widely used in various fields, including image recognition, speech processing, financial forecasting, and medical diagnosis, due to its ability to learn complex relationships in data.</p>
+                        </div>
+                    </div>
+
+                    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">⚙️ How Does a Perceptron Work?</h3>
+                    <p>A perceptron is a simple model of a biological neuron. It consists of an input layer, weights, a bias term, an activation function (usually a step function), and an output layer...</p>
+
+                    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">📋 Steps of a Perceptron</h3>
+                    <p>A perceptron follows these steps:</p>
+                    <ul>
+                        <li><strong>Step 1:</strong> Takes inputs <em>(x1, x2, ..., xn)</em> and assigns them weights <em>(w1, w2, ..., wn)</em>.</li><br>
+                        <li><strong>Step 2:</strong> Computes weighted sum:  
+                            \( z = (w_1x_1 + w_2x_2 + ... + w_nx_n) + b \)</li><br>
+                        <li><strong>Step 3:</strong> Applies an <strong>activation function</strong> (Step function, Sigmoid, ReLU, etc.).</li><br>
+                        <li><strong>Step 4:</strong> If the output is incorrect, the weights are updated using the <strong>Perceptron Learning Rule</strong>:</li><br>
+                        <p>\[ w_{new} = w_{old} + \eta (y - \hat{y})x \]</p><br>
+                        <li><strong>Step 5:</strong> Repeat steps 1–4 for each training example.</li><br>    
+                    </ul>
+
+                    <div class="info-box">
+                        <h3 style="text-align: center; color: #004aad; margin-top: 40px;">📘 Perceptron Learning Rule</h3>
+                        <p>The perceptron learning rule is a supervised learning algorithm used to train perceptrons. It adjusts the weights based on the error between the predicted and actual output.</p>
+                        <p>The weights are updated using the formula:</p><br>
+                        <p>\( w_{new} = w_{old} + \eta (y - \hat{y})x \)</p><br>
+                        <p>Where:</p>
+                        <ul>
+                            <li>\(\eta\) = learning rate</li><br>
+                            <li>\(w_{old}\) = old weight</li><br>
+                            <li>\(w_{new}\) = new weight</li><br>
+                            <li>\(y\) = actual output</li><br>
+                            <li>\(\hat{y}\) = predicted output</li><br>
+                        </ul>
+                    </div>
+
+                    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">🌍 Real-World Applications of Perceptrons</h3>
+                    <p>Perceptrons form the foundation of modern neural networks, playing a crucial role in various fields:</p><br>
+                    <ul>
+                        <li><strong>Binary Classification:</strong> Used in computer vision tasks to classify images.</li><br>
+                        <li><strong>Basic Pattern Recognition:</strong> Used in text processing to classify patterns.</li><br>
+                        <li><strong>Logic Gate Implementation</strong></li>
+                    </ul>
+
+                    <h4 style="color: #007acc;">💡 Perceptron Formula:</h4>
+                    <pre>
+                        𝑦 = 𝑓(𝑊𝑋 + 𝑏)
+                        
+                        Where:
+                        𝑊: Weight vector
+                        𝑋: Input vector
+                        𝑏: Bias
+                        𝑓: Activation function (usually a step function for binary classification)
+                    </pre>
+
+                    <h4 style="color: #007acc;">✅ AND Gate</h4>
+                    <table>
+                        <tr><th>Input A</th><th>Input B</th><th>Output (A AND B)</th></tr>
+                        <tr><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>0</td><td>1</td><td>0</td></tr>
+                        <tr><td>1</td><td>0</td><td>0</td></tr>
+                        <tr><td>1</td><td>1</td><td>1</td></tr>
+                    </table>
+
+                    <h4 style="color: #007acc;">✅ OR Gate</h4>
+                    <table>
+                        <tr><th>Input A</th><th>Input B</th><th>Output (A OR B)</th></tr>
+                        <tr><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>0</td><td>1</td><td>1</td></tr>
+                        <tr><td>1</td><td>0</td><td>1</td></tr>
+                        <tr><td>1</td><td>1</td><td>1</td></tr>
+                    </table>
+
+                    <h4 style="color: #007acc;">✅ NAND Gate</h4>
+                    <table>
+                        <tr><th>Input A</th><th>Input B</th><th>Output (A NAND B)</th></tr>
+                        <tr><td>0</td><td>0</td><td>1</td></tr>
+                        <tr><td>0</td><td>1</td><td>1</td></tr>
+                        <tr><td>1</td><td>0</td><td>1</td></tr>
+                        <tr><td>1</td><td>1</td><td>0</td></tr>
+                    </table>
+
+                    <h4 style="color: #007acc;">❌ XOR Gate</h4>
+                    <table>
+                        <tr><th>Input A</th><th>Input B</th><th>Output (A XOR B)</th></tr>
+                        <tr><td>0</td><td>0</td><td>0</td></tr>
+                        <tr><td>0</td><td>1</td><td>1</td></tr>
+                        <tr><td>1</td><td>0</td><td>1</td></tr>
+                        <tr><td>1</td><td>1</td><td>0</td></tr>
+                    </table>
+                    <p>The XOR function is not linearly separable. A single-layer perceptron cannot implement it.</p>
+
+                    <h3 style="text-align: center; color: #004aad; margin-top: 40px;">🔍 Examples of Perceptron Applications</h3>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <img src="binarying.jpg" alt="Handwritten Digit Recognition" width="200">
+                            <h3 style="text-align: center; color: #004aad; margin-top: 40px;">✏️ Binary Classification</h3>
+                            <p>Used in postal systems and bank check scanning to identify handwritten numbers.</p>
+                        </div>
+                        <div class="feature-card">
+                            <img src="patterning.jpg" alt="Spam Email Detection" width="200">
+                            <h3 style="text-align: center; color: #004aad; margin-top: 40px;">📬 Basic Pattern Recognition</h3>
+                            <p>Classifies emails as spam or not spam based on keywords and patterns.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="challenges" class="section">
+                  <style>
+                    #challenges {
+                      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                      background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+                      padding: 50px 20px;
+                      border-radius: 10px;
+                      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                    }
+                
+                    #challenges h2 {
+                      color: #0d47a1;
+                      text-align: center;
+                      font-size: 36px;
+                    }
+                
+                    #startBtn {
+                      display: block;
+                      margin: 20px auto;
+                      padding: 14px 28px;
+                      background-color: #388e3c;
+                      color: #fff;
+                      font-size: 18px;
+                      border: none;
+                      border-radius: 6px;
+                      cursor: pointer;
+                    }
+                
+                    #startBtn:hover {
+                      background-color: #2e7d32;
+                    }
+                
+                    #timer {
+                      text-align: center;
+                      font-size: 22px;
+                      color: #d32f2f;
+                      margin-bottom: 20px;
+                      animation: pulse 1s infinite alternate;
+                    }
+                
+                    @keyframes pulse {
+                      from { transform: scale(1); }
+                      to { transform: scale(1.1); }
+                    }
+                
+                    .quiz-container {
+                      background-color: #ffffff;
+                      border-radius: 15px;
+                      max-width: 850px;
+                      margin: 20px auto;
+                      padding: 30px;
+                      display: none;
+                      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+                    }
+                
+                    .question-card {
+                      background: #e3f2fd;
+                      padding: 20px;
+                      border-radius: 10px;
+                      margin-bottom: 20px;
+                      transition: transform 0.3s;
+                    }
+                
+                    .question {
+                      font-weight: 600;
+                      font-size: 18px;
+                      color: #0d47a1;
+                    }
+                
+                    .option-row {
+                      padding: 10px 15px;
+                      margin: 5px 0;
+                      border-radius: 6px;
+                      background-color: #fff;
+                      border: 1px solid #ccc;
+                      cursor: pointer;
+                      transition: background 0.4s ease;
+                    }
+                
+                    .option-row:hover {
+                      background-color: #dfefff;
+                    }
+                
+                    .option-row.selected.correct {
+                      background-color: #068aef;
+                      border-color: #021a70;
+                    }
+                
+                    .option-row.selected.wrong {
+                      background-color: #ff5252;
+                      border-color: #b71c1c;
+                    }
+                
+                    .progress {
+                      background-color: #eeeeee;
+                      border-radius: 20px;
+                      height: 18px;
+                      margin-top: 20px;
+                    }
+                
+                    .progress-bar {
+                      height: 100%;
+                      background-color: #3170ee;
+                      width: 0%;
+                      border-radius: 20px;
+                      transition: width 0.5s;
+                    }
+                
+                    button {
+                      background-color: #1976d2;
+                      color: white;
+                      padding: 12px 24px;
+                      font-size: 16px;
+                      border: none;
+                      border-radius: 6px;
+                      cursor: pointer;
+                      margin: 10px;
+                      transition: background 0.3s;
+                    }
+                
+                    button:hover {
+                      background-color: #1565c0;
+                    }
+                
+                    .result {
+                      text-align: center;
+                      font-size: 20px;
+                      margin-top: 30px;
+                    }
+                
+                    .badge {
+                      font-size: 26px;
+                      margin-top: 10px;
+                      animation: scoreAnim 1.2s ease-in-out forwards;
+                    }
+                
+                    @keyframes scoreAnim {
+                      0% { opacity: 0; transform: scale(0.6); }
+                      100% { opacity: 1; transform: scale(1); }
+                    }
+                
+                    .action-buttons {
+                      display: flex;
+                      justify-content: center;
+                      gap: 10px;
+                      margin-top: 20px;
+                    }
+                  </style>
+                
+                  <h2>🎯 Interactive Perceptron Quiz</h2>
+                  <p style="text-align:center;">Click your answers. They’ll lock in with color feedback. Gamified learning in action!</p>
+                  <div id="timer">Timer: 30s</div>
+                  <button id="startBtn" onclick="startQuiz()">▶️ Start Quiz</button>
+                
+                  <div class="quiz-container fade-in" id="quizContainer">
+                    <form id="quizForm"></form>
+                    <button onclick="submitQuiz()">🔍 Submit & Get Score</button>
+                    <div class="progress">
+                      <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="result" id="result"></div>
+                    <div class="action-buttons">
+                      <button onclick="startQuiz()">🔄 Play Again</button>
+                      <button onclick="tryMore()">🎲 Try More</button>
+                    </div>
+                  </div>
+                
+                  <script>
+                    const fullQuestionBank = [
+                      { q: "What does a perceptron primarily do?", a: ["Store memory", "Classify input", "Encode video"], c: "B" },
+                      { q: "Best activation for a binary classifier in basic perceptron?", a: ["Step Function", "Tanh", "Leaky ReLU"], c: "A" },
+                      { q: "Perceptrons fail at which logic gate?", a: ["AND", "OR", "XOR"], c: "C" },
+                      { q: "Which rule is used for perceptron training?", a: ["Gradient Descent", "Perceptron Rule", "Adam Optimizer"], c: "B" },
+                      { q: "Which is a nonlinear function?", a: ["Step", "Sigmoid", "None"], c: "B" },
+                      { q: "Limitation of perceptron?", a: ["Too fast", "Can't do non-linear separation", "Needs GPU"], c: "B" },
+                      { q: "When does perceptron stop training?", a: ["Fixed epochs", "No errors", "All weights = 0"], c: "B" },
+                      { q: "Perceptron’s output is based on?", a: ["Weighted sum", "Bias only", "Random value"], c: "A" }
+                    ];
+                
+                    let allQuestions = [];
+                    const quizForm = document.getElementById("quizForm");
+                    const totalQuestions = 5;
+                    let timerInterval;
+                
+                    function getRandomQuestions() {
+                      const shuffled = fullQuestionBank.sort(() => 0.5 - Math.random());
+                      return shuffled.slice(0, totalQuestions);
+                    }
+                
+                    function loadQuiz() {
+                      quizForm.innerHTML = "";
+                      allQuestions.forEach((item, index) => {
+                        const qCard = document.createElement("div");
+                        qCard.className = "question-card";
+                        qCard.innerHTML = `<p class="question">${index + 1}. ${item.q}</p>`;
+                        item.a.forEach((opt, i) => {
+                          const value = String.fromCharCode(65 + i);
+                          const optRow = document.createElement("div");
+                          optRow.className = "option-row";
+                          optRow.setAttribute("data-question", index);
+                          optRow.setAttribute("data-value", value);
+                          optRow.innerHTML = `<input type="radio" name="q${index}" value="${value}" style="margin-right: 10px;"> ${opt}`;
+                          optRow.addEventListener("click", () => selectOption(index, value, optRow));
+                          qCard.appendChild(optRow);
+                        });
+                        quizForm.appendChild(qCard);
+                      });
+                    }
+                
+                    function selectOption(qIndex, value, rowElement) {
+                      const options = document.querySelectorAll(`.option-row[data-question="${qIndex}"]`);
+                      options.forEach(opt => {
+                        opt.classList.remove("selected", "correct", "wrong");
+                        opt.querySelector('input').checked = false;
+                      });
+                      rowElement.classList.add("selected");
+                      rowElement.querySelector('input').checked = true;
+                    }
+                
+                    function submitQuiz() {
+                      clearInterval(timerInterval);
+                      let score = 0;
+                      let correct = 0;
+                      let wrong = 0;
+                
+                      allQuestions.forEach((item, index) => {
+                        const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                        const correctAns = item.c;
+                        if (selected) {
+                          const parent = selected.closest(".option-row");
+                          if (selected.value === correctAns) {
+                            score += 2;
+                            correct++;
+                            parent.classList.add("correct");
+                          } else {
+                            wrong++;
+                            parent.classList.add("wrong");
+                          }
+                        } else {
+                          wrong++;
+                        }
+                      });
+                
+                      const percent = (score / (totalQuestions * 2)) * 100;
+                      document.getElementById("progressBar").style.width = percent + "%";
+                
+                      let badge = "";
+                      if (score === totalQuestions * 2) badge = "🏆 Perfect! You're a Neural Ninja!";
+                      else if (score >= 6) badge = "🔥 Strong Brainwaves!";
+                      else badge = "📘 Keep Practicing Neural Rookie!";
+                
+                      document.getElementById("result").innerHTML = `
+                        <p><strong>Score:</strong> <span class="badge">${score}/10</span></p>
+                        <p>✅ Correct: ${correct} | ❌ Wrong: ${wrong}</p>
+                        <p class="badge">${badge}</p>
+                      `;
+                    }
+                
+                    function startQuiz() {
+                      document.getElementById("quizContainer").style.display = "block";
+                      allQuestions = getRandomQuestions();
+                      loadQuiz();
+                      document.getElementById("result").innerHTML = "";
+                      document.getElementById("progressBar").style.width = "0%";
+                      startTimer(30);
+                    }
+                
+                    function tryMore() {
+                      startQuiz(); // Just refreshes with new random questions
+                    }
+                
+                    function startTimer(seconds) {
+                      clearInterval(timerInterval);
+                      let time = seconds;
+                      const timerDisplay = document.getElementById("timer");
+                      timerDisplay.innerHTML = `⏳ Timer: ${time}s`;
+                      timerInterval = setInterval(() => {
+                        time--;
+                        timerDisplay.innerHTML = `⏳ Timer: ${time}s`;
+                        if (time <= 0) {
+                          clearInterval(timerInterval);
+                          submitQuiz();
+                        }
+                      }, 1000);
+                    }
+                
+                    // Load initial (if desired), or keep blank until "Start" is clicked
+                  </script>
+                </div>                
+                
+                  
+
+
+
+                <div id="Simulator" class="section">
+                    <style>
+                        #Simulator {
+                            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                            background-color: #f8f9fa;
+                            padding: 40px 20px;
+                        }
+                
+                        .sim-box {
+                            background-color: #ffffff;
+                            border-radius: 12px;
+                            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+                            margin: 40px auto;
+                            padding: 25px;
+                            max-width: 700px;
+                        }
+                
+                        .sim-box h2 {
+                            text-align: center;
+                            color: #004aad;
+                            font-size: 26px;
+                            margin-bottom: 12px;
+                        }
+                
+                        .sim-box p {
+                            text-align: center;
+                            font-size: 16px;
+                            color: #444;
+                            margin-bottom: 20px;
+                        }
+                
+                        .sim-box iframe {
+                            display: block;
+                            margin: 0 auto;
+                            border: none;
+                            border-radius: 10px;
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                        }
+                
+                        .controls {
+                            text-align: center;
+                            margin-top: 15px;
+                        }
+                
+                        .controls button {
+                            background-color: #007bff;
+                            color: white;
+                            padding: 10px 24px;
+                            font-size: 14px;
+                            border: none;
+                            border-radius: 6px;
+                            cursor: pointer;
+                            transition: background-color 0.3s ease;
+                        }
+                
+                        .controls button:hover {
+                            background-color: #0056b3;
+                        }
+                
+                        @media (max-width: 768px) {
+                            .sim-box iframe {
+                                width: 100%;
+                                height: 400px;
+                            }
+                        }
+                    </style>
+                
+                    <div class="sim-box">
+                        <h2>📊 Decision Boundary Visualization</h2>
+                        <p>Watch a perceptron learn to separate linearly separable data:</p>
+                        <iframe id="plot-frame" src="http://127.0.0.1:5000/perceptron-separable" width="600" height="600"></iframe>
+                        <div class="controls">
+                            <button onclick="document.getElementById('plot-frame').src='http://127.0.0.1:5000/perceptron-separable'">🔄 Reset</button>
+                        </div>
+                    </div>
+                
+                    <div class="sim-box">
+                        <h2>🔌 AND-Gate Simulator</h2>
+                        <p>Train a perceptron to model logical AND gate behavior.</p>
+                        <iframe id="plot-frame1" src="http://127.0.0.1:5000/perceptron-and" width="600" height="600"></iframe>
+                        <div class="controls">
+                            <button onclick="document.getElementById('plot-frame1').src='http://127.0.0.1:5000/perceptron-and'">🔄 Reset</button>
+                        </div>
+                    </div>
+                
+                    <div class="sim-box">
+                        <h2>🚫 It Gets Stuck on Non-Linearly Separable Data</h2>
+                        <p>Observe a perceptron's limitation when faced with XOR-like datasets.</p>
+                        <iframe id="plot-frame3" src="http://127.0.0.1:5000/x_data" width="600" height="600"></iframe>
+                        <div class="controls">
+                            <button onclick="document.getElementById('plot-frame3').src='http://127.0.0.1:5000/x_data'">🔄 Reset</button>
+                        </div>
+                    </div>
+                
+                    <div class="sim-box">
+                        <h2>🔧 Implementing Perceptron on Complex Data</h2>
+                        <p>Visualize how we can tweak the network to handle complex cases.</p>
+                        <iframe id="plot-frame2" src="http://127.0.0.1:5000/x_data_t1" width="600" height="600"></iframe>
+                        <div class="controls">
+                            <button onclick="document.getElementById('plot-frame2').src='http://127.0.0.1:5000/x_data_t1'">🔄 Reset</button>
+                        </div>
+                    </div>
+                
+                    <div class="sim-box">
+                        <h2>💡 Another Way to Solve Non-Linearly Separable Problems</h2>
+                        <p>Explore an alternative method to tackle XOR-style data.</p>
+                        <iframe id="plot-frame4" src="http://127.0.0.1:5000/x_data_t2" width="600" height="600"></iframe>
+                        <div class="controls">
+                            <button onclick="document.getElementById('plot-frame4').src='http://127.0.0.1:5000/x_data_t2'">🔄 Reset</button>
+                        </div>
+                    </div>
+                </div>
+             </div>   
+                            
+                
+                    
+                
+        
+
+            <footer>
+                <p>© 2025 Neural Insight | <a href="#">Contact Us</a></p>
+            </footer>
+
+            <script>
+                function showSection(sectionId) {
+                    document.querySelectorAll('.section').forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    document.getElementById(sectionId).classList.add('active');
+                }
+
+                
+            </script>
+</body>
+</html>
